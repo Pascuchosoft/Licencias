@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>formulario de ingreso</title>
+<style type="text/css">
+<!--
+body {
+	background-image: url(LightMossMarble2.BMP);
+	background-repeat: repeat;
+}
+-->
+</style>
+<script>
+function valido_fecha(fec){
+	var f = new String();
+	f = fec;
+	ret = true;
+	if (f.indexOf('-')!=2 || f.indexOf('/')!=-1 || f.lastIndexOf('-')!=5){
+		ret=false;
+		alert("No es una fecha válida, o su formato no es aceptado");
+	}
+	return ret;
+}
+
+function valido_envia(){
+	if(frm.txt_dias.value.length == 0 || isNaN(frm.txt_dias.value) == true || valido_fecha(frm.txt_fecha.value) == false){
+       alert("Verifique los datos ingresados"); 
+	   frm.txt_fecha.focus();
+	}else{
+		alert("Muchas gracias por enviar el formulario"); 
+    	frm.submit();
+	}				
+
+}
+</script>
+</head>
+
+<body>
+<form name="frm" id="frm" action="calendario.php" method="post">
+<h1>Ingrese Fecha de Inicio de la vacación : </h1><h2>(verifique que su inicio no sea feriado ni finde)</h2><hr /><br />
+<h3>Ejemplo : (dd-mm-aaaa) 30-12-2010</h3>
+<input type="text" name="txt_fecha" id="txt_fecha" /><br />
+<h3>Ingrese Cantidad de Dias que se tomará de vacaciones :</h3>
+<input type="text" size="1" name="txt_dias" id="txt_dias" /><br /><br />
+<input type="button" value="Enviar" onclick="valido_envia();" />
+</form>
+</body>
+</html>
